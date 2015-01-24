@@ -1,18 +1,91 @@
 /*
-* Skeleton V2.0
+* Skeleton V2.0.4
 * Copyright 2014, Dave Gamache
 * www.getskeleton.com
 * Free to use under the MIT license.
 * http://www.opensource.org/licenses/mit-license.php
-* 12/9/2014
-* Less Version by Seth Coelen https://github.com/whatsnewsaes
+* 12/29/2014
 */
 
+// LESS Contents:
+// –––––––––––––––––––––––––––––––––––––––––––––––
+// LESS Variables
+// LESS Functions
 
+// LESS Variables
+// –––––––––––––––––––––––––––––––––––––––––––––––
+
+// Global
+
+@font-family   : "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-color    : #222;
+@border-radius : 4px;
+@border-color  : #E1E1E1;
+
+// Grid Container
+
+@container-max-width      : 960px;
+@container-margin         : 0 auto;
+@container-padding        : 0 20px;
+
+@container-mobile-width   : 85%;
+@container-mobile-padding : 0;
+
+@container-phablet-width  : 80%;
+
+// Grid Columns
+
+@total-columns  : 12;
+@column-margin  : 4%;
+@column-space   : 100 - (@column-margin * (@total-columns - 1));   // This calculates how much space the columns will
+@column-width   : @column-space / @total-columns;                  // actually occupy
+@column-padding : 0;
+
+// Colors
+
+@primary-color   : #1EAEDB;
+@secondary-color : #33C3F0;
+
+@link-color       : @primary-color;
+@link-hover-color : darken(@link-color, 10%);
+
+@button-primary-font-color : #fff;
+@button-font-color         : #555;
+@button-border-color       : #bbb;
+@button-hover-font-color   : #333;
+@button-hover-border-color : lighten(@button-hover-font-color, 33.3%);
+
+@form-border-color: #D1D1D1;
+
+// Viewport Widths
+
+@viewport-mobile     : 400px;
+@viewport-phablet    : 550px;
+@viewport-tablet     : 750px;
+@viewport-desktop    : 1000px;
+@viewport-desktop-hd : 1200px;
+
+// LESS Functions
+// –––––––––––––––––––––––––––––––––––––––––––––––
+
+#grid {
+  // Takes a single column's width and multiplies it by how many columns to span by. Then adds the width of the margins
+  // that would normally occupy the space between single columns.
+  // @column-span-size: how many columns to span by
+  .calculate-column-width(@column-span-size) when (isnumber(@column-span-size)) {
+    width: @column-width * @column-span-size + ((@column-span-size - 1) * @column-margin);
+  }
+
+  // This will handle both first-child and nth-child grid elements.
+  // @offset-span-size: how many columns to offset by
+  // @nth: how many individual column margins to add/remove. Typically only used for non-first-child elements.
+  .calculate-offset-width(@offset-span-size, @nth: 0) when (isnumber(@offset-span-size)) and (isnumber(@nth)) {
+    margin-left: @column-width * @offset-span-size + (@offset-span-size + @nth) * @column-margin;
+  }
+}
 
 /* Table of contents
-–––––––––––––––––––––––––––––––––––––––––––––––––– 
-- Variables
+––––––––––––––––––––––––––––––––––––––––––––––––––
 - Grid
 - Base Styles
 - Typography
@@ -28,134 +101,135 @@
 - Media Queries
 */
 
-/* Variables
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-// Colors
-  @primary-color: #33C3F0; 
-@secondary-color: #bbbbbb;
-   @border-color: #bbbbbb;
-     @link-color: #1EAEDB;
-     @font-color: #222222;
-     @light-gray: #e1e1e1;
-      @dark-gray: #333333;
-
-// Grid Variables
-@container-width: 960px;
-  @total-columns: 12; 
-   @column-width: 100 / @total-columns; // calculates individual column width based off of # of columns
-  @column-margin: 3.666666666666%; // space between columns
- @column-padding: 4px 8px; // space inside columns
-      @row-space:2rem; // Margin-bottom for .row
-
-
-// Breakpoints
-   @larger-than-mobile: 400px;
-  @larger-than-phablet: 550px;
-   @larger-than-tablet: 750px;
-  @larger-than-desktop: 1000px;
-@larger-than-desktophd: 1200px;
-
-// Typography
-@font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-
-// Misc 
-@global-radius:4px;
-
-
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
 .container {
-  position: relative; 
-  width: 80%; 
-  max-width: @container-width; 
-  margin: 0 auto; 
-  padding: 0; }
-.container .column,        
-.container .columns { 
-  float: left; 
-  width: 100%; 
-  box-sizing: border-box; }
-.row { 
-  margin-bottom: @row-space; }
-.row .column:first-child,        
-.row .columns:first-child { 
-  margin-left: 0; }
+  position: relative;
+  width: 100%;
+  max-width: @container-max-width;
+  margin: @container-margin;
+  padding: @container-padding;
+  box-sizing: border-box;
+}
 
-/* For devices larger than 550px */
-@media (min-width: 550px) {
-  .container .column,
-  .container .columns {
-    margin-left: @column-margin; 
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box;
+}
+
+/* For devices larger than mobile */
+@media (min-width: @viewport-mobile) {
+  .container {
+    width: @container-mobile-width;
+    padding: @container-mobile-padding; 
+  }
+}
+
+/* For devices larger than phablet */
+@media (min-width: @viewport-phablet) {
+  .container {
+    width: @container-phablet-width;
+  }
+
+  .column,
+  .columns {
+    margin-left: @column-margin;
     padding: @column-padding;
   }
-  
-  .container .one.column,
-  .container .one.columns          { width: @column-width * 1 - (@column-margin);  }
-  .container .two.columns          { width: @column-width * 2 - (@column-margin);  }
-  .container .three.columns        { width: @column-width * 3 - (@column-margin);  }
-  .container .four.columns         { width: @column-width * 4 - (@column-margin);  }
-  .container .five.columns         { width: @column-width * 5 - (@column-margin);  }
-  .container .six.columns          { width: @column-width * 6 - (@column-margin);  }
-  .container .seven.columns        { width: @column-width * 7 - (@column-margin);  }
-  .container .eight.columns        { width: @column-width * 8 - (@column-margin);  }
-  .container .nine.columns         { width: @column-width * 9 - (@column-margin);  }
-  .container .ten.columns          { width: @column-width * 10 - (@column-margin); }
-  .container .eleven.columns       { width: @column-width * 11 - (@column-margin); }
-  .container .twelve.columns       { width: 100%; margin-left: 0; }
 
-  .container .one-third.column     { width: @column-width * 4 - (@column-margin);  }
-  .container .two-thirds.column    { width: @column-width * 8 - (@column-margin);  }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0;
+  }
 
-  .container .one-half.column      { width: @column-width * 6 - (@column-margin);  }
+  .one.column,
+  .one.columns       { #grid.calculate-column-width(1); }
+  .two.columns       { #grid.calculate-column-width(2); }
+  .three.columns     { #grid.calculate-column-width(3); }
+  .four.columns      { #grid.calculate-column-width(4); }
+  .five.columns      { #grid.calculate-column-width(5); }
+  .six.columns       { #grid.calculate-column-width(6); }
+  .seven.columns     { #grid.calculate-column-width(7); }
+  .eight.columns     { #grid.calculate-column-width(8); }
+  .nine.columns      { #grid.calculate-column-width(9); }
+  .ten.columns       { #grid.calculate-column-width(10); }
+  .eleven.columns    { #grid.calculate-column-width(11); }
+  .twelve.columns    { #grid.calculate-column-width(12); }
+
+  .one-third.column  { #grid.calculate-column-width(4); }
+  .two-thirds.column { #grid.calculate-column-width(8); }
+
+  .one-half.column   { #grid.calculate-column-width(6); }
 
   /* Offsets */
-  .container .offset-by-one.column,
-  .container .offset-by-one.columns       { margin-left: @column-width * 1 - (@column-margin);  }
-  .container .offset-by-two.column        { margin-left: @column-width * 2 - (@column-margin);  }
-  .container .offset-by-three.column      { margin-left: @column-width * 3 - (@column-margin);  }            
-  .container .offset-by-four.column       { margin-left: @column-width * 4 - (@column-margin);  }
-  .container .offset-by-five.column       { margin-left: @column-width * 5 - (@column-margin);  }
-  .container .offset-by-six.column        { margin-left: @column-width * 6 - (@column-margin);  }            
-  .container .offset-by-seven.column      { margin-left: @column-width * 7 - (@column-margin);  }
-  .container .offset-by-eight.column      { margin-left: @column-width * 8 - (@column-margin);  }
-  .container .offset-by-nine.column       { margin-left: @column-width * 9 - (@column-margin);  }          
-  .container .offset-by-ten.column        { margin-left: @column-width * 10 - (@column-margin); }
-  .container .offset-by-eleven.column     { margin-left: @column-width * 11 - (@column-margin); }
+  .offset {
+    &.by-one        { #grid.calculate-offset-width(1,1); }
+    &.by-two        { #grid.calculate-offset-width(2,1); }
+    &.by-three      { #grid.calculate-offset-width(3,1); }
+    &.by-four       { #grid.calculate-offset-width(4,1); }
+    &.by-five       { #grid.calculate-offset-width(5,1); }
+    &.by-six        { #grid.calculate-offset-width(6,1); }
+    &.by-seven      { #grid.calculate-offset-width(7,1); }
+    &.by-eight      { #grid.calculate-offset-width(8,1); }
+    &.by-nine       { #grid.calculate-offset-width(9,1); }
+    &.by-ten        { #grid.calculate-offset-width(10,1); }
+    &.by-eleven     { #grid.calculate-offset-width(11,1); }
 
-  .container .offset-by-one-third.column  { margin-left: @column-width * 4 - (@column-margin); }
-  .container .offset-by-two-thirds.column { margin-left: @column-width * 8 - (@column-margin); }
+    &.by-one-third  { #grid.calculate-offset-width(4,1); }
+    &.by-two-thirds { #grid.calculate-offset-width(8,1); }
 
-  .container .offset-by-one-half.column   { margin-left: @column-width * 1 - (@column-margin); }
+    &.by-one-half   { #grid.calculate-offset-width(6,1); }
 
+    &:first-child {
+      &.by-one          { #grid.calculate-offset-width(1); }
+      &.by-two          { #grid.calculate-offset-width(2); }
+      &.by-three        { #grid.calculate-offset-width(3); }
+      &.by-four         { #grid.calculate-offset-width(4); }
+      &.by-five         { #grid.calculate-offset-width(5); }
+      &.by-six          { #grid.calculate-offset-width(6); }
+      &.by-seven        { #grid.calculate-offset-width(7); }
+      &.by-eight        { #grid.calculate-offset-width(8); }
+      &.by-nine         { #grid.calculate-offset-width(9); }
+      &.by-ten          { #grid.calculate-offset-width(10); }
+      &.by-eleven       { #grid.calculate-offset-width(11); }
+
+      &.by-one-third    { #grid.calculate-offset-width(4); }
+      &.by-two-thirds   { #grid.calculate-offset-width(8); }
+
+      &.by-one-half     { #grid.calculate-offset-width(6); }
+    }
+  }
 }
 
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* NOTE
-html is set to 62.5% so that all the REM measurements throughout Skeleton 
+html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
-html { font-size: 62.5%; } 
+html {
+  font-size: 62.5%;
+}
 
 body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
   font-family: @font-family;
-  color: @font-color; 
+  color: @font-color;
 }
 
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-h1, h2, h3, h4, h5, h6 { 
-  font-weight: 300;
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
 h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
 h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -.1rem; }
 h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -.1rem; }
@@ -164,7 +238,7 @@ h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
 h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
 /* Larger than phablet */
-@media (min-width: @larger-than-phablet) {
+@media (min-width: @viewport-phablet) {
   h1 { font-size: 5.0rem; }
   h2 { font-size: 4.2rem; }
   h3 { font-size: 3.6rem; }
@@ -174,18 +248,22 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 p {
-  margin-top: 0; }
+  margin-top: 0;
+}
 
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-a { 
-  color: @link-color; }
-a:hover { 
-  color: darken(@link-color, 5%); }
+a {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-hover-color;
+}
 
 
-/* Buttons 
+/* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button,
 button,
@@ -193,22 +271,25 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   display: inline-block;
-  background-color: transparent;
-  border-radius: @global-radius;
-  color: @secondary-color;
+  height: 38px;
+  padding: 0 30px;
+  color: @button-font-color;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid @secondary-color;
-  height: 38px;
   line-height: 38px;
-  padding: 0 30px;
   letter-spacing: .1rem;
-  text-transform: uppercase; 
+  text-transform: uppercase;
+  text-decoration: none;
   white-space: nowrap;
-  box-sizing: border-box; }
+  background-color: transparent;
+  border-radius: @border-radius;
+  border: 1px solid @button-border-color;
+  cursor: pointer;
+  box-sizing: border-box;
+
+}
+
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -219,17 +300,22 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  border-color: darken(@secondary-color, 10%);
-  color: darken(@secondary-color, 10%);
-  outline: 0; }
+  color: @button-hover-font-color;
+  border-color: @button-hover-border-color;
+  outline: 0;
+}
+
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
-  border-color: @primary-color;
-  background-color: @primary-color; }
+  background-color: @secondary-color;
+  border-color: @secondary-color;
+
+}
+
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -240,80 +326,115 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  background-color: darken(@primary-color, 10%);
-  border-color: darken(@primary-color, 10%);
-  color: #FFF; }
+  color: @button-primary-font-color;
+  background-color: @primary-color;
+  border-color: @primary-color; 
+}
 
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="email"],
+input[type="number"],
 input[type="search"],
 input[type="text"],
+input[type="tel"],
+input[type="url"],
 input[type="password"],
 textarea,
 select {
-  border: 1px solid @border-color;
-  height: 36px;
+  height: 38px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-  border-radius: @global-radius;
+  background-color: #fff;
+  border: 1px solid @form-border-color;
+  border-radius: @border-radius;
   box-shadow: none;
-  background: #fff; }
-/* Removes awkard default styles on some inputs */
+  box-sizing: border-box;
+}
+
+/* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
+input[type="number"],
 input[type="search"],
 input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
 textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
 }
+
 textarea {
   min-height: 65px;
   padding-top: 6px;
-  padding-bottom: 6px; }
+  padding-bottom: 6px;
+}
+
 input[type="email"]:focus,
+input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid @primary-color;
-  outline: 0; }
+  border: 1px solid @secondary-color;
+  outline: 0;
+}
+
 label,
 legend {
   display: block;
+  margin-bottom: .5rem;
   font-weight: 600;
-  margin-bottom: .5rem; }
+}
+
 fieldset {
+  padding: 0;
   border-width: 0;
-  padding: 0; }
+}
+
 input[type="checkbox"],
 input[type="radio"] {
-  display: inline; }
+  display: inline;
+}
+
 label > .label-body {
   display: inline-block;
+  margin-left: .5rem;
   font-weight: normal;
-  margin-left: .5rem; }
+}
 
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-ul { 
-  list-style: circle inside; }
-ol { 
-  list-style: decimal inside; }
+ul {
+  list-style: circle inside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
 ol, ul {
+  padding-left: 0;
   margin-top: 0;
-  padding-left: 0; }
-ul ul, 
+}
+
+ul ul,
 ul ol,
-ol ol, 
-ol ul { 
-  margin: 1.5rem 0 1.5rem 3rem; 
-  font-size: 90%; }
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%;
+}
+
 li {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 
 /* Code
@@ -322,14 +443,17 @@ code {
   padding: .2rem .5rem;
   margin: 0 .2rem;
   font-size: 90%;
-  background: lighten(@light-gray, 7%);
-  border: 1px solid @light-gray;
-  border-radius: @global-radius;
-  white-space: nowrap; }
+  white-space: nowrap;
+  background: #F1F1F1;
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
+}
+
 pre > code {
   display: block;
   padding: 1rem 1.5rem;
-  white-space: pre; }
+  white-space: pre;
+}
 
 
 /* Tables
@@ -338,28 +462,36 @@ th,
 td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid @light-gray; }
+  border-bottom: 1px solid @border-color;
+}
+
 th:first-child,
 td:first-child {
-  padding-left: 0; }
+  padding-left: 0;
+}
+
 th:last-child,
 td:last-child {
-  padding-right: 0; }
+  padding-right: 0;
+}
 
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 button,
 .button {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
+
 input,
 textarea,
 select,
 fieldset {
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+}
+
 pre,
 blockquote,
-form,
 dl,
 figure,
 table,
@@ -367,24 +499,29 @@ p,
 ul,
 ol,
 form {
-  margin-bottom: 2.5rem; }
-p {
-  margin-top: 0; }
-
+  margin-bottom: 2.5rem;
+}
 
 
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .u-full-width {
   width: 100%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
 .u-max-full-width {
   max-width: 100%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
 .u-pull-right {
-  float: right; }
+  float: right;
+}
+
 .u-pull-left {
-  float: left; }
+  float: left;
+}
 
 
 /* Misc
@@ -393,8 +530,9 @@ hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid @light-gray;
+  border-top: 1px solid @border-color;
 }
+
 
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -402,32 +540,34 @@ hr {
 /* Self Clearing Goodness */
 .container:after,
 .row:after,
-.u-cf { 
+.u-cf {
   content: "";
   display: table;
-  clear: both; }
+  clear: both;
+}
 
 
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
-Note: The best way to structure the use of media queries is to create the queries 
+Note: The best way to structure the use of media queries is to create the queries
 near the relevant code. For example, if you wanted to change the styles for buttons
-on small devices, paste the mobile query code up in the buttons secion and style it 
-there. 
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
 */
 
+
 /* Larger than mobile */
-@media (min-width: @larger-than-mobile) {}
+@media (min-width: @viewport-mobile) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: @larger-than-phablet) {}
+@media (min-width: @viewport-phablet) {}
 
 /* Larger than tablet */
-@media (min-width: @larger-than-tablet) {}
+@media (min-width: @viewport-tablet) {}
 
 /* Larger than desktop */
-@media (min-width: @larger-than-desktop) {}
+@media (min-width: @viewport-desktop) {}
 
 /* Larger than Desktop HD */
-@media (min-width: @larger-than-desktophd) {}
+@media (min-width: @viewport-desktop-hd) {}
