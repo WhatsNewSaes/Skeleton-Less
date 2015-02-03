@@ -64,11 +64,11 @@
 // Functions
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 .grid-column-width(@n) {
-  width: @column-width * @n - (@column-margin) + (@n/3);
+  width: @column-width * @n - (@column-margin*(@total-columns - @n)/@total-columns);
 }
 
 .grid-offset-length(@n) {
-  margin-left: percentage((@column-width * @n  + (@n/3)) / 100);
+  margin-left: @column-width * @n - (@column-margin*(@total-columns - @n)/@total-columns) + @column-margin;
 }
 
 /* Grid
@@ -104,7 +104,7 @@
   }
   .column,
   .columns {
-    margin-left: 4%;
+    margin-left: @column-margin;
   }
   .column:first-child,
   .columns:first-child {
