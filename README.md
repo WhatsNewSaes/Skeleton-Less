@@ -2,7 +2,7 @@
 
 Skeleton-Less is the (un)official Less version of [Dave Gamache's](https://twitter.com/dhg) Skeleton Framework
 
-Skeleton-Less currently featues a stable 2.0.4 version of Skeleton.
+Skeleton-Less currently featues a stable version of Skeleton 2.0.4
 
 -----
 
