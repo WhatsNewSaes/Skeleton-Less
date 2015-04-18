@@ -1,4 +1,11 @@
 # [Skeleton-Less](http://getskeleton.com)
+
+Skeleton-Less is the (un)official Less version of [Dave Gamache's](https://twitter.com/dhg) Skeleton Framework
+
+Skeleton-Less currently featues a stable 2.0.4 version of Skeleton.
+
+-----
+
 Skeleton is a simple, responsive boilerplate to kickstart any responsive project.
 
 Check out <http://getskeleton.com> for documentation and details.
@@ -11,35 +18,39 @@ Check out <http://getskeleton.com> for documentation and details.
   * [grunt.js](http://grunt.js); `[sudo] npm install -g grunt-cli`
 
 ### Install Local Dependancies
-  * Download zip or clone the repo
+  * [Download zip](https://github.com/whatsnewsaes/Skeleton-Less/archive/master.zip), [clone the repo](github-mac://openRepo/https://github.com/whatsnewsaes/Skeleton-Less) or `bower install Skeleton-Less' from your terminal
   * cd to project folder
   * run `[sudo] npm install` (first time users)
-  * run `grunt` (to watch and compile less files)
+  * run `grunt` (to watch and compile Less files)
 
 ### What's in the download?
 
-The download includes Skeleton's CSS, Normalize CSS as a reset, a sample favicon, and an index.html as a starting point.
+The download includes Skeleton's CSS, ~~Normalize CSS as a reset,~~ a sample favicon, and an index.html as a starting point.
 
 ```
 skeleton/
 ├── index.html
-├── css/
-│   ├── normalize.min.css
-│   └── skeleton.css
-├── less/
-│   └── skeleton.css
+├── scss/
+│   └── skeleton.scss
 ├── images/
-│   └── favicon.ico
+│   └── favicon.png
+├── package.json
+├── Gruntfile.js
 └── README.md
 
 ```
 
+### Contributions
+The goal of Skeleton-Less is to have a mirrored Less repository of Skeleton. In order to keep the integrity of the original Skeleton framework, I cannot accept any features or functionality outside the original implementation of [Dave Gamache's](https://twitter.com/dhg) [Skeleton Framework](https://github.com/dhg/Skeleton). If you would like to see features, functionality, or extensions outside of the original please make a PR / or issue on the original skeleton framework.
+
+If you have Less improvements, additional mixins, or other helpful Less techniques that stay within the original codebase. Feel free to make a pull request!
+
 ### Why it's awesome
 
-Skeleton is lightweight and simple. It styles only raw HTML elements (with a few exceptions) and provides a responsive grid. Nothing more. 
+Skeleton is lightweight and simple. It styles only raw HTML elements (with a few exceptions) and provides a responsive grid. Nothing more.
 - Minified, it's less than a kb
-- It's a starting point, not a UI framework 
-- No compiling or installing...just vanilla CSS
+- It's a starting point, not a UI framework
+- ~~No compiling or installing...just vanilla CSS~~
 
 
 ## Browser support
@@ -55,7 +66,7 @@ The above list is non-exhaustive. Skeleton works perfectly with almost all older
 
 ## License
 
-All parts of Skeleton are free to use and abuse under the [open-source MIT license](http://opensource.org/licenses/mit-license.php).
+All parts of Skeleton-Less are free to use and abuse under the [open-source MIT license](http://opensource.org/licenses/mit-license.php).
 
 
 ## Colophon
