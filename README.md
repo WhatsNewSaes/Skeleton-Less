@@ -18,7 +18,7 @@ Check out <http://getskeleton.com> for documentation and details.
   * [grunt.js](http://grunt.js); `[sudo] npm install -g grunt-cli`
 
 ### Install Local Dependancies
-  * [Download zip](https://github.com/whatsnewsaes/Skeleton-Less/archive/master.zip), [clone the repo](github-mac://openRepo/https://github.com/whatsnewsaes/Skeleton-Less) or `bower install Skeleton-Less` from your terminal
+  * [Download zip](https://github.com/whatsnewsaes/Skeleton-Less/archive/master.zip), [clone the repo](github-mac://openRepo/https://github.com/whatsnewsaes/Skeleton-Less) or `bower install skeleton-less` from your terminal
   * cd to project folder
   * run `[sudo] npm install` (first time users)
   * run `grunt` (to watch and compile Less files)
