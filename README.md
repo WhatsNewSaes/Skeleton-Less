@@ -1,8 +1,6 @@
 # [Skeleton-Less](http://getskeleton.com)
 
-Skeleton-Less is the (un)official Less version of [Dave Gamache's](https://twitter.com/dhg) Skeleton Framework
-
-Skeleton-Less currently featues a stable version of Skeleton 2.0.4
+Skeleton-Less is the (un)official Less version of [Dave Gamache's](https://twitter.com/dhg) Skeleton Framework. It currently featues a stable version of Skeleton 2.0.4
 
 -----
 
