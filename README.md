@@ -76,4 +76,4 @@ Skeleton was built using [Sublime Text 3](http://www.sublimetext.com/3) and desi
 
 Skeleton was created by [Dave Gamache](https://twitter.com/dhg) for a better web.
 
-Skeleton-Less was created by [Seth Coelen](http://sethcoelen.com).
+Skeleton-Less was created by [Seth Coelen](http://sethcoelen.com) for a better Skeleton.
