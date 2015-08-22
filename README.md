@@ -28,8 +28,8 @@ The download includes Skeleton's CSS, ~~Normalize CSS as a reset,~~ a sample fav
 ```
 skeleton/
 ├── index.html
-├── scss/
-│   └── skeleton.scss
+├── less/
+│   └── skeleton.less
 ├── images/
 │   └── favicon.png
 ├── package.json
