@@ -1,5 +1,17 @@
 module.exports = function(grunt) {
     grunt.initConfig({
+        
+        pkg: grunt.file.readJSON('package.json'),
+        cssmin: {
+            options: {
+                banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+            },
+            build: {
+                files: {
+                    'css/skeleton.min.css': 'css/skeleton.css'
+                }
+            }
+        },
         less: {
             development: {
                 options: {
@@ -29,6 +41,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['less', 'watch']);
+    grunt.registerTask('default', ['less', 'cssmin','watch']);
 };

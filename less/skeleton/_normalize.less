@@ -1,0 +1,87 @@
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* NOTE
+html is set to 62.5% so that all the REM measurements throughout Skeleton
+are based on 10px sizing. So basically 1.5rem = 15px :) */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: @font-family;
+  color: @font-color;
+}
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+a {
+  color: @link-color;
+  &:hover {
+    color: darken(@link-color, 5%);
+  }
+}
+
+/* Lists
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+ul {
+  list-style: circle inside;
+}
+
+ol {
+  list-style: decimal inside;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+ul {
+  padding-left: 0;
+  margin-top: 0;
+  ul, ol {
+    margin: 1.5rem 0 1.5rem 3rem;
+    font-size: 90%;
+  }
+}
+
+ol {
+  ol, ul {
+    margin: 1.5rem 0 1.5rem 3rem;
+    font-size: 90%;
+  }
+}
+
+li {
+  margin-bottom: 1rem;
+}
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+button,
+.button {
+  margin-bottom: 1rem;
+}
+
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem;
+}
