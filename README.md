@@ -19,7 +19,9 @@ Check out <http://getskeleton.com> for documentation and details.
   * [Download zip](https://github.com/whatsnewsaes/Skeleton-Less/archive/master.zip), [clone the repo](github-mac://openRepo/https://github.com/whatsnewsaes/Skeleton-Less) or `bower install skeleton-less` from your terminal
   * cd to project folder
   * run `[sudo] npm install` (first time users)
-  * run `grunt` (to watch and compile Less files)
+  * run `grunt` (compile and cssmin Less files)
+  * run `grunt cssmin` (to minify css files)
+  * run `grunt watch` (to watch and compile Less files)
 
 ### What's in the download?
 
@@ -29,6 +31,19 @@ The download includes Skeleton's CSS, ~~Normalize CSS as a reset,~~ a sample fav
 skeleton/
 ├── index.html
 ├── less/
+│   └── skeleton
+│   │  └── _variables.less
+│   │  └── _mixins.less
+│   │  └── _grid.less
+│   │  └── _forms.less
+│   │  └── _buttons.less
+│   │  └── _type.less
+│   │  └── _code.less
+│   │  └── _tables.less
+│   │  └── _utilities.less
+│   │  └── _normalize.less
+│   │  └── _medias.less
+│   │
 │   └── skeleton.less
 ├── images/
 │   └── favicon.png
@@ -46,7 +61,7 @@ If you have Less improvements, additional mixins, or other helpful Less techniqu
 ### Why it's awesome
 
 Skeleton is lightweight and simple. It styles only raw HTML elements (with a few exceptions) and provides a responsive grid. Nothing more.
-- Minified, it's less than a kb
+- Minified to 5,75k
 - It's a starting point, not a UI framework
 - ~~No compiling or installing...just vanilla CSS~~
 

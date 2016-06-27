@@ -1,0 +1,9 @@
+// Functions
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.grid-column-width(@n) {
+  width: @column-width * @n - (@column-margin*(@total-columns - @n)/@total-columns);
+}
+
+.grid-offset-length(@n) {
+  margin-left: @column-width * @n - (@column-margin*(@total-columns - @n)/@total-columns) + @column-margin;
+}
