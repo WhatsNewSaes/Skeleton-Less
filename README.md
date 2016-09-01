@@ -21,6 +21,16 @@ Check out <http://getskeleton.com> for documentation and details.
   * run `[sudo] npm install` (first time users)
   * run `grunt` (to watch and compile Less files)
 
+### Overwriting default variables
+
+To allow overwriting Skeleton's variables, they are stored in a separate file. To selectively overwrite variables, import the files separately instead of using the combined skeleton.less.
+
+```less
+@import 'skeleton-less/less/default-variables.less';
+@import 'your-application/your-variables.less';
+@import 'skeleton-less/less/main.less';
+```
+
 ### What's in the download?
 
 The download includes Skeleton's CSS, ~~Normalize CSS as a reset,~~ a sample favicon, and an index.html as a starting point.
@@ -29,6 +39,8 @@ The download includes Skeleton's CSS, ~~Normalize CSS as a reset,~~ a sample fav
 skeleton/
 ├── index.html
 ├── less/
+│   └── default-variables.less
+│   └── main.less
 │   └── skeleton.less
 ├── images/
 │   └── favicon.png
