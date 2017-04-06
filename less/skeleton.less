@@ -68,7 +68,10 @@
 }
 
 .grid-offset-length(@n) {
-  margin-left: @column-width * @n - (@column-margin*(@total-columns - @n)/@total-columns) + @column-margin;
+  margin-left: (@column-width * @n) - (@column-margin*(@total-columns - @n)/@total-columns) + @column-margin;
+  &:not(:first-child) {
+    margin-left: (@column-width * @n) - (@column-margin*(@total-columns - @n)/@total-columns) + (@column-margin * 2);
+  }
 }
 
 /* Grid
